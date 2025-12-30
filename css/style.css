@@ -135,11 +135,94 @@ nav {
     paint-order: stroke fill;
 }
 
-/* 4. Responsive (Biar gak hancur di HP) */
+/* 4. Mobile Responsive */
 @media (max-width: 768px) {
-    .nav-links { display: none; }
-    .container { flex-direction: column; align-items: center; text-align: center; }
-    .hero-text { text-align: center; padding-bottom: 20px; }
-    .hero-text h1 { font-size: 2.5rem; }
-    .mascot { height: 50vh; }
+    .hero {
+        height: 100vh;
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .hero-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    position: absolute;
+    top: -10%; /* BG Position */
+    left: 0;
+}
+
+    .hero-bg-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .nav-links {
+        display: none;
+    }
+    
+    .nav-container {
+        flex-direction: row;
+        justify-content: center;
+        position: relative;
+    }
+
+    /* Tambahkan icon-menu.svg di pojok kanan/kiri via CSS atau HTML */
+    .nav-container::after {
+        content: url('../assets/icon-menu.svg');
+        position: absolute;
+        left: 0;
+        width: 30px;
+        cursor: pointer;
+    }
+
+    .logo {
+        height: 75px !important;
+        padding-top: 8px;
+        margin: 0 auto;
+    }
+
+    .mascot {
+        height: 65vh !important; /* 70% dari tinggi layar */
+        position: absolute;
+        bottom: 17%;
+        left: 48% !important;
+        transform: translateX(-50%); /* Fix tengah */
+        z-index: 10;
+    }
+
+    /* 4. Posisi Hero Text di Tengah & Adjust Size */
+    .container.hero-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end; /* Paksa konten ke bawah */
+        height: 100%;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding-bottom: 5%; /* Jarak 5% dari bawah layar */
+        position: relative;
+    }
+
+    .hero-text {
+        flex: none; 
+        width: 100%;
+        text-align: center;
+        z-index: 30;
+    }
+
+    .hero-text h1 {
+        font-size: 3.5rem !important;
+        line-height: 1.1;
+        display: block; /* Kembalikan ke block biar margin auto bekerja */
+    }
+
+    .font-barber {
+        -webkit-text-stroke: 6px white; /* Stroke agak tipisin biar rapi di HP */
+    }
 }
