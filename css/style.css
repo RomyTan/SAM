@@ -27,6 +27,10 @@ nav {
 
 .logo {
     height: 70px;
+    animation: backInDown;
+    animation-duration: 1s;
+    animation-delay: 1.5s;
+    animation-fill-mode: both;
 }
 
 .nav-links {
@@ -103,11 +107,18 @@ nav {
 .mascot {
     height: 70vh;
     display: block;
+    animation: bounceInLeft;
+    animation-duration: 1s;
+    animation-fill-mode: both;
 }
 
 .hero-text {
     flex: 1;
     padding-bottom: 20px;
+    animation: backInUp;
+    animation-duration: 1s;
+    animation-delay: 0.8s;
+    animation-fill-mode: both;
 }
 
 .hero-text h1 {
@@ -135,8 +146,116 @@ nav {
     paint-order: stroke fill;
 }
 
-/* 4. Mobile Responsive */
+/* 4. About Us Section */
+.about-us {
+    padding: 100px 10%;
+    background-color: #f9f9f9; /* Atau pake bg texture kertas lo */
+    background-image: url('../assets/bg-paper-texture.jpg'); /* Jika ada */
+    display: flex;
+    align-items: center;
+}
+
+.container-about {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 50px;
+}
+
+.about-text {
+    flex: 1;
+}
+
+.about-text h4 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+    font-weight: 700;
+}
+
+.about-text h4, .about-text h2, .about-text p, 
+.about-mascot img, .btn-choose {
+    opacity: 0;
+    filter: blur(5px); /* Opsional: tambah efek blur biar lebih WOW */
+    transform: translateY(30px);
+    transition: all 0.8s ease-out;
+}
+
+.show-animate .about-text h4, 
+.show-animate .about-text h2, 
+.show-animate .about-text p, 
+.show-animate .about-mascot img, 
+.show-animate .btn-choose {
+    opacity: 1;
+    filter: blur(0);
+    transform: translateY(0);
+}
+
+.about-text h4 { transition-delay: 0.2s; }
+.about-text h2 { transition-delay: 0.4s; }
+.about-text p  { transition-delay: 0.6s; }
+.about-mascot img { transition-delay: 0.9s; transform: scale(0.8); } /* Khusus mascot start kecil */
+.show-animate .about-mascot img { transform: scale(1); } /* Pas muncul balik normal */
+.btn-choose { transition-delay: 1.1s; }
+
+.about-mascot img {
+    opacity: 0;
+    animation: zoomInRight ease-in;
+}
+
+.about-text h2 {
+    font-size: 3.5rem;
+    font-weight: 700;
+    line-height: 1.1;
+    color: #202020;
+    margin-bottom: 20px;
+}
+
+.blue-text { color: #0080CF; }
+.orange-text { color: #FF8A00; }
+
+.about-text p {
+    font-size: 1.1rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 30px;
+    max-width: 500px;
+}
+
+.btn-choose {
+    background-color: #0080CF;
+    color: white;
+    text-decoration: none;
+    padding: 15px 30px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.about-mascot {
+    flex: 1;
+    display: flex;
+    justify-content: center;
+}
+
+.about-mascot img {
+    width: 100%;
+    max-width: 550px;
+    object-fit: contain;
+}
+
+/* Responsive About Us */
 @media (max-width: 768px) {
+    .container-about {
+        flex-direction: column;
+        text-align: center;
+    }
+    .about-text h2 { font-size: 2.5rem; }
+    .about-text p { margin: 0 auto 30px auto; }
+}
+
+/* 99. Mobile Responsive */
+@media (max-width: 914px) {
     .hero {
         height: 100vh;
         width: 100%;
@@ -191,8 +310,8 @@ nav {
         height: 65vh !important; /* 70% dari tinggi layar */
         position: absolute;
         bottom: 17%;
-        left: 48% !important;
-        transform: translateX(-50%); /* Fix tengah */
+        left: 5% !important;
+        
         z-index: 10;
     }
 
