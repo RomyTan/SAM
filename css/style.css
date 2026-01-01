@@ -1,4 +1,7 @@
-/* 1. Reset */
+/*  ===========================================  */
+/*  ================== RESET ==================  */
+/*  ===========================================  */
+
 * {
     margin: 0;
     padding: 0;
@@ -10,7 +13,10 @@ body {
     overflow-x: hidden;
 }
 
-/* 2. Navbar Styling */
+/*  ===========================================  */
+/*  ================== NAV BAR ================  */
+/*  ===========================================  */
+
 nav {
     position: absolute;
     top: 0;
@@ -57,7 +63,11 @@ nav {
     height: 20px;
 }
 
-/* 3. Hero Section */
+
+/*  ===========================================  */
+/*  =============== HERO SECTION ==============  */
+/*  ===========================================  */
+
 .hero {
     width: 100%;
     height: 100vh;
@@ -133,7 +143,7 @@ nav {
 
 /* --- Hero & Logo Transition --- */
 
-/* State awal: Sembunyi */
+/* State: Hidden */
 .mascot, .hero-text, nav .logo {
     opacity: 0;
     filter: blur(10px);
@@ -144,7 +154,7 @@ nav {
 .hero-text { transform: translateY(30px); }
 nav .logo { transform: translateY(-20px); }
 
-/* State aktif: Muncul (Pemicu hero-visible di body) */
+/* State aktif: Show */
 .hero-visible .mascot,
 .hero-visible .hero-text,
 .hero-visible nav .logo {
@@ -153,18 +163,26 @@ nav .logo { transform: translateY(-20px); }
     transform: translate(0) scale(1) !important;
 }
 
-/* Antrean Muncul */
+/* Animation Sequence */
 .hero-visible .mascot { transition-delay: 0.3s; }
 .hero-visible .hero-text { transition-delay: 0.8s; }
 .hero-visible nav .logo { transition-delay: 1.3s; }
 
-/* 4. About Us Section */
+
+
+/*  ===========================================  */
+/*  ============== ABOUT SECTION ==============  */
+/*  ===========================================  */
+
 .about-us {
     padding: 100px 10%;
-    background-color: #f9f9f9;
-    background-image: url('../assets/bg-paper-texture.jpg');
+    background: linear-gradient(to bottom, #FFE4CC, #FFFFFF);
     display: flex;
     align-items: center;
+}
+
+.about-us-mobile {
+    display: none;
 }
 
 .about-underline {
@@ -173,6 +191,70 @@ nav .logo { transform: translateY(-20px); }
     background-color: #009DFF; /* Warna biru lo */
     margin: 0 0 50px;
     border-radius: 2px;
+}
+
+.sam-about, .sam-smoke {
+    position: absolute;
+    top: 10%;
+    right: 10;
+    width: 130%;
+    height: auto;
+}
+
+.sam-smoke {
+    z-index: 3;
+    filter: blur(2px);
+    animation: steamMove 3s linear infinite;
+}
+
+@keyframes steamMove {
+        0% {
+            filter: blur(2px);
+            transform: translateY(0) scaleX(1) skewX(0deg);
+            opacity: 0;
+        }
+        25% {
+            filter: blur(3px);
+            transform: translateY(-5px) scale(1.1) skewX(5deg);
+            opacity: 0.5;
+        }
+        50% {
+            filter: blur(2px);
+            transform: translateY(-10px) scale(1.2) skewX(-5deg);
+            opacity: 0.25;
+        }
+        75% {
+            filter: blur(3px);
+            transform: translateY(-15px) scaleX(1.3) skewX(5deg); 
+            opacity: 0.5;
+        }
+        100% {
+            filter: blur(2px);
+            transform: translateY(-25px) scaleX(1.4) skewX(-5deg); 
+            opacity: 0;
+        }
+    }
+
+.about-mascot {
+    flex: 1;
+    position: relative;
+    display: flex;
+    width: 100%;
+    justify-content: flex-end;
+    align-items: flex-end;
+    max-width: 500px;
+    margin-top: 20px;
+    margin-right: auto;
+    height: 520px;
+}
+
+.about-us .sam-about, 
+.about-us .sam-smoke {
+    position: absolute;
+    bottom: -40px; /* Angka negatif ini kuncinya buat nurunin mascot */
+    right: 0;
+    width: 600px; /* Sesuaikan ukuran desktop lo */
+    height: auto;
 }
 
 .container-about {
@@ -271,76 +353,376 @@ nav .logo { transform: translateY(-20px); }
     object-fit: contain;
 }
 
-/* --- Why Staying in Our Villa Section --- */
-.why-section {
-    background-color: #F4F4F4; /* Sesuai request lo */
-    padding: 100px 10%;
+/*  ===========================================  */
+/*  =============== VILLA SECTION =============  */
+/*  ===========================================  */
+.villa-section {
+    background: #FFFFFF;
+    overflow: hidden;
     text-align: center;
+    position: relative;
+    padding: 48px;
 }
 
-.why-title {
-    font-size: 1.2rem;
-    color: #333;
+.villa-header h2 {
+    font-size: 1.8rem;
+    font-weight: 600;
     margin-bottom: 10px;
-    font-weight: 700;
 }
 
-.why-underline {
-    width: 60px;
-    height: 6px;
-    background-color: #009DFF; /* Warna biru lo */
+.villa-underline {
+    width: 50px;
+    height: 5px;
+    background-color: #009DFF;
     margin: 0 auto 50px;
     border-radius: 2px;
 }
 
-.why-grid {
+.villa-container {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    position: relative;
+    z-index: 1;
+}
+
+.villa-card {
+    position: relative;
+    flex: 1;
+    max-width: 420px;
+    text-align: left;
+    background: #fff;
+    border-radius: 15px;
+    overflow: visible; /* Biar shadow gak kepotong */
+}
+
+.villa-img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+
+.villa-info h3 { font-size: 1.5rem; }
+.villa-meta { color: #555; font-weight: 500; font-size: 0.9rem; margin-bottom: 15px; }
+.villa-desc { font-size: 0.85rem; color: #777; line-height: 1.6; margin-bottom: 20px; }
+
+.label-best {
+    position: absolute;
+    top: 0;
+    left: 16px;
+    background: #F7971F;
+    color: #fff;
+    padding: 6px 15px;
+    border-radius: 0 0 5px 5px;
+    border: 2px solid #FFFFFF;
+    border-top: none;
+    font-size: 12px;
+    font-weight: 700;
+}
+
+.btn-details {
+    display: inline-block;
+    padding: 12px 30px;
+    background-color: #009DFF;
+    color: white;
+    text-decoration: none;
+    border-radius: 8px;
+    font-weight: bold;
+    font-size: 0.9rem;
+    transition: 0.3s;
+}
+
+/* Mascot Service Positioning */
+.mascot-service {
+    position: absolute;
+    bottom: -20px;
+    right: -50px;
+    width: 280px;
+    height: auto;
+    z-index: 10;
+    pointer-events: none; /* Klik bisa tembus ke tombol di bawahnya */
+}
+
+.slider-dots { display: none; } /* Sembunyi di Desktop */
+
+/* --- MOBILE VERSION --- */
+@media (max-width: 920px) {
+    .villa-section {
+        position: relative;
+        overflow: hidden;
+        padding: 16px;
+        margin-bottom: 64px;
+    }
+
+    .villa-container {
+        display: flex;
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        scrollbar-width: none;
+        justify-content: flex-start;
+        -ms-overflow-style: none;
+        -webkit-overflow-scrolling: touch;
+    }
+
+    .villa-container::-webkit-scrollbar {
+        display: none !important;
+    }
+    
+    .villa-card {
+        flex: 0 0 100%;
+        width: 100%;
+        scroll-snap-align: center;
+        box-sizing: border-box;
+    }
+
+    .villa-img {
+        width: 100%;
+        height: 380px;
+        object-fit: cover;
+        border-radius: 16px;
+    }
+
+    .villa-desc {
+        padding-right: 128px;
+    }
+    .mascot-service {
+        position: absolute;
+        right: -20;
+        bottom: 0;
+        margin: 0;
+        display: block;
+        width: 196px;
+    }
+
+    .slider-dots {
+        display: flex;
+        justify-content: left;
+        gap: 8px;
+        margin-top: 40px;
+        position: relative;
+        z-index: 110;
+    }
+
+    .dot {
+        width: 10px;
+        height: 10px;
+        background: #E0E0E0;
+        border-radius: 50%;
+        transition: 0.3s;
+    }
+
+    .dot.active {
+        background: #009DFF;
+        width: 25px;
+        border-radius: 10px;
+    }
+}
+
+/*  ===========================================  */
+/*  ================ WHY SECTION ==============  */
+/*  ===========================================  */
+
+.why-section {
+    position: relative;
+    padding: 100px 5%;
+    overflow: hidden;
+    background: #162939; /* Dark background base */
+}
+
+.why-bg-container {
+    position: absolute;
+    top: 0; left: 0; width: 100%; height: 100%;
+    z-index: 1;
+}
+
+.why-bg {
+    width: 100%; height: 100%;
+    object-fit: cover;
+    opacity: 0.8;
+}
+
+.why-content {
+    position: relative;
+    z-index: 2;
+    text-align: center;
+}
+
+.why-header h2 {
+    color: #fff;
+    font-size: 1.8rem;
+    font-weight: 600;
+    margin-bottom: 10px;
+}
+
+.why-underline {
+    width: 50px; height: 4px;
+    background: #009DFF;
+    margin: 0 auto 60px;
+    border-radius: 2px;
+}
+
+/* Grid Desktop */
+.why-grid-container {
     display: grid;
-    grid-template-columns: repeat(3, 1fr); /* 3 Kolom Desktop */
+    grid-template-columns: repeat(3, 1fr);
     gap: 30px;
 }
 
 .why-card {
-    background: #FFFFFF;
-    padding: 40px 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.05); /* Shadow halus */
+    /* Glassmorphism Specs */
+    background: rgba(255, 255, 255, 0.5);
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: 3px solid rgba(255, 255, 255, 1); /* Stroke Putih 3px */
+    border-radius: 20px;
+    padding: 32px 48px;
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15); /* Drop Shadow Y=6 Blur=12 */
     transition: transform 0.3s ease;
 }
 
-.why-card:hover {
-    transform: translateY(-10px); /* Efek angkat pas hover */
+.why-icon { 
+    width: 75px; height: 75px; margin-bottom: 20px;
+    filter: drop-shadow(2px 0 0 #fff) 
+            drop-shadow(-2px 0 0 #fff) 
+            drop-shadow(0 2px 0 #fff) 
+            drop-shadow(0 -2px 0 #fff);
+}
+.why-card h3 { color: #000; margin-bottom: 15px; font-size: 1.4rem; }
+.why-card p { color: #333; font-size: 0.95rem; line-height: 1.6; }
+
+.why-dots { display: none; }
+
+/* --- WHY SECTION MOBILE RESET --- */
+@media (max-width: 920px) {
+    .why-section {
+        position: relative;
+        padding: 60px 0;
+        /* Paksa background gelap dasar biar gak ada bocor putih */
+        background-color: #0B1D2A !important; 
+        min-height: 860px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        overflow: hidden;
+    }
+
+    /* 1. Fix Background: Full Height & Rata Kiri */
+    .why-bg-container {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        z-index: 1;
+    }
+
+    .why-bg {
+        width: auto !important; /* Biar gak gepeng */
+        height: 100% !important; /* Paksa penuh ke bawah */
+        min-width: 100vw;
+        object-fit: cover;
+        /* KUNCI: Ambil scenery dari kiri sesuai permintaan lo */
+        object-position: left center !important; 
+        opacity: 0.6;
+    }
+
+    .why-content {
+        position: relative;
+        z-index: 2;
+        width: 100%;
+    }
+
+    /* 2. Fix Title: Proporsional di HP */
+    .why-header h2 {
+        font-size: 1.8rem !important; 
+        color: #FFFFFF;
+        margin-bottom: 8px;
+    }
+
+    .why-underline {
+        margin-bottom: 40px;
+    }
+
+    /* 3. Fix Cards: Glassmorphism Reset */
+    .why-grid-container {
+        display: flex !important; /* Ubah grid jadi flex buat slider */
+        overflow-x: auto;
+        scroll-snap-type: x mandatory;
+        gap: 0;
+        padding: 0 10vw; /* Offset biar card pertama center */
+        scrollbar-width: none;
+        -ms-overflow-style: none;
+    }
+
+    .why-grid-container::-webkit-scrollbar {
+        display: none;
+    }
+
+    .why-card {
+        flex: 0 0 80vw; /* Card selebar 80% layar biar kanan kiri kelihatan dikit */
+        width: 80vw;
+        margin: 0 10px;
+        scroll-snap-align: center;
+        /* Spek Glassmorphism lo */
+        background: rgba(255, 255, 255, 0.5) !important; 
+        backdrop-filter: blur(8px) !important;
+        -webkit-backdrop-filter: blur(8px) !important;
+        border: 3px solid #FFFFFF !important;
+        border-radius: 16px;
+        padding: 32px 48px;
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12);
+        box-sizing: border-box;
+        text-align: center;
+    }
+
+    .why-icon {
+        width: 65px; /* Kecilin dikit iconnya buat mobile */
+        height: 65px;
+        margin-bottom: 15px;
+    }
+
+    .why-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 10px;
+        color: #000;
+    }
+
+    .why-card p {
+        font-size: 0.85rem;
+        line-height: 1.5;
+        color: #333;
+    }
+
+    /* Slider Dots Mobile */
+    .why-dots {
+        display: flex;
+        justify-content: center;
+        gap: 8px;
+        margin-top: 30px;
+    }
+
+    .w-dot {
+        width: 8px;
+        height: 8px;
+        background: rgba(255, 255, 255, 0.3);
+        border-radius: 50%;
+        transition: 0.3s;
+    }
+
+    .w-dot.active {
+        background: #FFFFFF;
+        width: 20px;
+        border-radius: 10px;
+    }
 }
 
-.why-card img {
-    height: 60px;
-    margin-bottom: 20px;
-}
 
-.why-card h3 {
-    font-size: 1.4rem;
-    font-weight: 700;
-    margin-bottom: 15px;
-    color: #000;
-}
+/*  ===========================================  */
+/*  ============ MOBILE RESPONSIVE ============  */
+/*  ===========================================  */
 
-.why-card p {
-    font-size: 1rem;
-    color: #666;
-    line-height: 1.6;
-}
-
-.why-title, .why-underline, .why-card {
-    opacity: 0;
-    filter: blur(10px);
-    transform: translateY(20px);
-    transition: all 0.8s cubic-bezier(0.22, 1, 0.36, 1);
-}
-
-.show-animate .why-title { opacity: 1; filter: blur(0); transform: translateY(0); transition-delay: 0.8s; }
-.show-animate .why-underline { opacity: 1; filter: blur(0); transform: translateY(0); transition-delay: 1.0s; }
-.show-animate .why-card{ opacity: 1; filter: blur(0); transform: translateY(0); transition-delay: 1.2s; }
-
-/* 99. Mobile Responsive */
 @media (max-width: 920px) {
     .hero {
         height: 100vh;
@@ -427,94 +809,191 @@ nav .logo { transform: translateY(-20px); }
     .font-barber {
         -webkit-text-stroke: 6px white;
     }
+}
 
-    /* About Section */
-    /* 1. Container dibuat menumpuk (Overlay) */
+
+/*  ===========================================  */
+/*  =========== MOBILE ABOUT SECTION ==========  */
+/*  ===========================================  */
+
+    @media (max-width: 920px) {
     .about-us {
-        min-height: 100vh; /* Kunci tinggi biar layar gak lompat */
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        padding: 50px 10%;
+        display: none;
     }
 
-    .about-underline {
-    width: 60px;
-    height: 6px;
-    background-color: #009DFF; /* Warna biru lo */
-    margin: 0 auto 50px;
-    border-radius: 2px;
-    }
-
-    .container-about {
-        position: relative;
-        flex-direction: column;
-        justify-content: center;
-        min-height: 500px;
-        padding-top: 0;
-    }
-
-    .container-about {
-        flex-direction: column;
-        text-align: center;
-    }
-    .about-text h2 { font-size: 2.5rem; }
-    .about-text p { margin: 0 auto 30px auto; }
-
-    /* 2. State Awal Mascot: Di Tengah & Sembunyi */
-    /* --- Hero Tetap Sesuai Desain Awal Lo --- */
-    .mascot { height: 65vh !important; bottom: 17%; left: 5% !important; }
-    .logo { height: 75px !important; margin: 0 auto; }
-
-    /* --- Fix About Us Mobile --- */
-    .about-us {
-        padding: 50px 10%;
-        min-height: 600px; /* Gunakan fixed height agar layar tidak narik ke atas */
+    .about-us-mobile {
+        background: linear-gradient(to bottom, #FFE4CC, #FFFFFF);
+        display: block;
+        min-height: auto;
+        padding: 40px 20px 60px 20px;
         overflow: hidden;
-    }
-
-    .container-about {
         position: relative;
-        min-height: 450px;
+    }
+    
+    .sam-about, .sam-smoke {
+        position: absolute;
+        top: 10%;
+        right: 10;
+        width: 130%;
+        height: auto;
     }
 
-    /* Mascot Mobile: Ukuran Terkontrol */
-    .about-mascot {
+    .mascot-wrapper-mobile {
+        position: relative;
+        width: 100%;
+        max-width: 500px;
+        margin-top: 20px;
+        margin-right: auto;
+        height: 520px;
+    }
+
+    .sam-about {
+        z-index: 2;
+    }
+
+    .sam-smoke {
+        z-index: 3;
+        filter: blur(2px);
+        animation: steamMove 3s linear infinite;
+    }
+
+    .show-animate .sam-about {
+        opacity: 0;
+        filter: blur(10px);
+        transform: translateX(-50px);
+        animation: mascotFadeIn 1.2s ease-out forwards;
+        animation-delay: 0.2s;
+    }
+
+    /* BUBBLE SPEECH */
+    .bubble-speech {
         position: absolute;
         top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 110%;
-        z-index: 20;
+        left: 0;
+        background: white;
+        padding: 30px 0px 20px 20px;
+        border-radius: 25px;
+        box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+        z-index: 1;
+        width: 75%;
+        font-family: 'BarberChop', sans-serif;
     }
-
-    .show-animate .about-mascot {
-        animation: mobileMascotExit 2.5s forwards;
-    }
-
-    /* Teks Mobile: Muncul setelah area bersih */
-    .about-text {
-        position: relative;
+    
+    .show-animate .bubble-speech {
         opacity: 0;
-        transition: all 0.8s ease-out 2.2s; /* Nunggu mascot beres kabur */
+        transform: scale(0);
+        transform-origin: bottom left;
+        animation: bubblePop 0.8s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        animation-delay: 1.2s;
     }
 
-    .show-animate .about-text { opacity: 1; }
-    .show-animate .about-text h4 { transition-delay: 2.2s; }
-    .show-animate .about-underline { transition-delay: 2.4s; }
-    .show-animate .about-text h2 { transition-delay: 2.6s; }
-    .show-animate .about-text p  { transition-delay: 2.8s; }
-    .show-animate .btn-choose    { transition-delay: 3.0s; }
-}
+    .bubble-text { display: flex; flex-direction: column; line-height: 1.05; }
+    .small-text { font-size: 24px; color: black; margin-bottom: 5px; }
+    .large-text { font-size: 40px; font-weight: bold; }
+    .blue { color: #009DFF; }
+    .orange { color: #F78400; }
 
-@keyframes mobileMascotExit {
-    0% { opacity: 0; transform: translate(-50%, 0) scale(0.8); }
-    20% { opacity: 1; transform: translate(-50%, 0) scale(1); }
-    70% { opacity: 1; transform: translate(-50%, 0) scale(1); }
-    100% { opacity: 0; transform: translate(100%, 0) scale(0.9); }
-}
+    .letter {
+        display: inline-block; 
+        opacity: 0;
+        transform: translateY(-20px);
+        transition: all 0.3s cubic-bezier(0.175, 0.875, 0.32, 1.275);
+    }
 
-/* WHY Mobile */
+    .letter.fell {
+        opacity: 1;
+        transform: translateY(0); 
+    }
+
+    .space {
+        display: inline-block;
+        width: 0.3em;
+    }
+
+    /* CONTENT & BUTTON */
+    .about-content-mobile {
+        position: relative;
+        text-align: center;
+        margin-top: 40px;
+        padding: 0 10px;
+    }
+
+    .about-content-mobile p {
+        font-size: 1rem;
+        line-height: 1.6;
+        color: #444;
+        margin-bottom: 25px;
+    }
+
+    .btn-choose-mobile {
+        display: inline-block;
+        background-color: #009DFF;
+        color: white;
+        text-decoration: none;
+        padding: 15px 35px;
+        border-radius: 12px;
+        font-weight: bold;
+    }
+
+    @keyframes mascotFadeIn {
+        0% {
+            opacity: 0;
+            filter: blur(10px);
+            transform: translateX(-50px);
+        }
+        100% {
+            opacity: 1;
+            filter: blur(0);
+            transform: translateX(0);
+        }
+    }
+
+    @keyframes bubblePop {
+        0% {
+            opacity: 0;
+            transform: scale(0);
+        }
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+    }
+
+    @keyframes steamMove {
+        0% {
+            filter: blur(2px);
+            transform: translateY(0) scaleX(1) skewX(0deg);
+            opacity: 0;
+        }
+        25% {
+            filter: blur(3px);
+            transform: translateY(-5px) scale(1.1) skewX(5deg);
+            opacity: 0.5;
+        }
+        50% {
+            filter: blur(2px);
+            transform: translateY(-10px) scale(1.2) skewX(-5deg);
+            opacity: 0.25;
+        }
+        75% {
+            filter: blur(3px);
+            transform: translateY(-15px) scaleX(1.3) skewX(5deg); 
+            opacity: 0.5;
+        }
+        100% {
+            filter: blur(2px);
+            transform: translateY(-25px) scaleX(1.4) skewX(-5deg); 
+            opacity: 0;
+        }
+    }
+
+    }
+
+
+/*  ===========================================  */
+/*  ================ WHY MOBILE ===============  */
+/*  ===========================================  */
+
 @media (max-width: 920px) {
     .why-grid {
         display: flex;
@@ -538,5 +1017,100 @@ nav .logo { transform: translateY(-20px); }
         scroll-snap-align: center;
         box-shadow: 0 5px 15px rgba(0,0,0,0.05);
         background: #fff; /* Biar tetap kelihatan putih bersih */
+    }
+}
+
+/*  ===========================================  */
+/*  ================== FOOTER =================  */
+/*  ===========================================  */
+
+.main-footer {
+    background-color: #122432;
+    padding: 60px 5% 40px;
+    color: #FFFFFF;
+    text-align: center;
+}
+
+.footer-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 40px;
+}
+
+.footer-logo img {
+    width: 250px; /* Sesuaikan ukuran logo lo */
+    height: auto;
+}
+
+.footer-socials {
+    display: flex;
+    gap: 25px;
+    justify-content: center;
+}
+
+.footer-socials img {
+    width: 32px; /* Ukuran icon sosial media */
+    height: 32px;
+    transition: transform 0.3s ease;
+}
+
+.footer-socials a:hover img {
+    transform: translateY(-5px); /* Efek hover dikit biar idup */
+}
+
+.footer-bottom {
+    width: 100%;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    padding-top: 30px;
+}
+
+.footer-bottom p {
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+    opacity: 0.8;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: center;
+    gap: 15px;
+    font-size: 0.9rem;
+}
+
+.footer-links a {
+    color: #FFFFFF;
+    text-decoration: none;
+    opacity: 0.8;
+    transition: opacity 0.3s;
+}
+
+.footer-links a:hover {
+    opacity: 1;
+}
+
+/* --- MOBILE VERSION --- */
+@media (max-width: 920px) {
+    .main-footer {
+        padding: 50px 20px 30px;
+    }
+
+    .footer-container {
+        gap: 30px;
+    }
+
+    .footer-logo img {
+        width: 200px;
+    }
+
+    .footer-links {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .footer-links span {
+        display: none;
     }
 }
