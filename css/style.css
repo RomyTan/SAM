@@ -1025,7 +1025,7 @@ nav .logo { transform: translateY(-20px); }
 /*  ===========================================  */
 
 .main-footer {
-    background-color: #122432;
+    background-color: #0d1821 !important;
     padding: 60px 5% 40px;
     color: #FFFFFF;
     text-align: center;
@@ -1052,13 +1052,13 @@ nav .logo { transform: translateY(-20px); }
 }
 
 .footer-socials img {
-    width: 32px; /* Ukuran icon sosial media */
+    width: 32px;
     height: 32px;
     transition: transform 0.3s ease;
 }
 
 .footer-socials a:hover img {
-    transform: translateY(-5px); /* Efek hover dikit biar idup */
+    transform: translateY(-5px);
 }
 
 .footer-bottom {
@@ -1069,6 +1069,7 @@ nav .logo { transform: translateY(-20px); }
 
 .footer-bottom p {
     font-size: 0.9rem;
+    font-weight: 300;
     margin-bottom: 10px;
     opacity: 0.8;
 }
@@ -1078,6 +1079,7 @@ nav .logo { transform: translateY(-20px); }
     justify-content: center;
     gap: 15px;
     font-size: 0.9rem;
+    font-weight: 300;
 }
 
 .footer-links a {
@@ -1112,5 +1114,19 @@ nav .logo { transform: translateY(-20px); }
 
     .footer-links span {
         display: none;
+    }
+
+    .footer-links {
+        display: flex !important;
+        flex-direction: row !important;
+        justify-content: center;
+        gap: 10px;
+        font-size: 0.9rem;
+        flex-wrap: wrap;
+    }
+
+    .footer-links span {
+        display: inline !important;
+        opacity: 0.5;
     }
 }
