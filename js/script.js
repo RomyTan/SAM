@@ -175,3 +175,24 @@ document.querySelector('.v-btn-search').addEventListener('click', function() {
     // Smooth scroll ke section villa setelah search
     document.querySelector('.v-listing-section').scrollIntoView({ behavior: 'smooth' });
 });
+
+async function shareVilla(title, url) {
+    // Cek apakah browser mendukung Web Share API
+    if (navigator.share) {
+        try {
+            await navigator.share({
+                title: title,
+                text: 'Cek villa keren di Batu ini: ' + title,
+                url: url,
+            });
+            console.log('Berhasil share!');
+        } catch (err) {
+            console.log('User membatalkan share');
+        }
+    } else {
+        // Fallback kalau di PC: Copy link ke clipboard
+        navigator.clipboard.writeText(url).then(() => {
+            alert('Link villa berhasil disalin!');
+        });
+    }
+}

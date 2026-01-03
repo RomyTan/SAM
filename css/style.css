@@ -1627,7 +1627,7 @@ nav .logo { transform: translateY(-20px); }
 .v-price { font-weight: 600; font-size: 1rem; }
 
 .v-shr {
-    background: #0FB318;
+    background: #008DF2;
     color: #fff;
     padding: 8px 16px;
     border-radius: 8px;
@@ -1636,7 +1636,7 @@ nav .logo { transform: translateY(-20px); }
 }
 
 .v-btn {
-    background: #008DF2;
+    background: #0FB318;
     color: #fff;
     padding: 8px 16px;
     border-radius: 8px;
@@ -1713,3 +1713,4 @@ nav .logo { transform: translateY(-20px); }
     }
 
 }
+
