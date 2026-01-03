@@ -116,3 +116,62 @@ function initObserver() {
         if (section) observer.observe(section);
     });
 }
+
+// Tambahkan ini di bawah file HTML lo sebelum tag </body>
+document.querySelectorAll('.next').forEach(button => {
+    button.addEventListener('click', () => {
+        const container = button.parentElement.querySelector('.slider-container');
+        container.scrollBy({ left: 300, behavior: 'smooth' });
+    });
+});
+
+document.querySelectorAll('.prev').forEach(button => {
+    button.addEventListener('click', () => {
+        const container = button.parentElement.querySelector('.slider-container');
+        container.scrollBy({ left: -300, behavior: 'smooth' });
+    });
+});
+
+document.addEventListener("DOMContentLoaded", function() {
+    // Klik tombol Next
+    document.querySelectorAll('.v-next').forEach(btn => {
+    btn.onclick = function() {
+        // Cari container yang sejajar
+        const container = this.parentElement.querySelector('.v-slider-container');
+        container.scrollBy({ left: container.offsetWidth, behavior: 'smooth' });
+    };
+});
+
+    // Klik tombol Prev
+    document.querySelectorAll('.v-prev').forEach(btn => {
+        btn.onclick = function(e) {
+            e.preventDefault();
+            const container = this.parentElement.querySelector('.v-slider-container');
+            container.scrollBy({ left: -container.clientWidth, behavior: 'smooth' });
+        };
+    });
+});
+
+document.querySelector('.v-btn-search').addEventListener('click', function() {
+    // 1. Ambil angka dari select
+    const selectedGuests = parseInt(document.querySelector('.v-filter-input').value);
+    
+    // 2. Scan semua villa
+    document.querySelectorAll('.v-card').forEach(card => {
+        // Ambil angka dari teks "👤 25 Guests"
+        const capacityText = card.querySelector('.v-amenities span:first-child').innerText;
+        const capacityValue = parseInt(capacityText.replace(/[^0-9]/g, ''));
+
+        // 3. Logika Filter
+        // Khusus pilihan "≤5", kita tampilkan semua villa (asumsi semua villa muat 5 orang)
+        // Untuk pilihan "≥10" dst, hanya tampilkan villa yang kapasitasnya memadai
+        if (selectedGuests === 5 || capacityValue >= selectedGuests) {
+            card.style.display = 'block';
+        } else {
+            card.style.display = 'none';
+        }
+    });
+    
+    // Smooth scroll ke section villa setelah search
+    document.querySelector('.v-listing-section').scrollIntoView({ behavior: 'smooth' });
+});
