@@ -13,70 +13,85 @@ window.addEventListener('DOMContentLoaded', () => {
     const closeBtn = document.getElementById('close-menu');
     const body = document.body;
 
-    // Fungsi Gabungan Buka/Tutup
     function toggleMobileMenu(isOpen) {
         if (isOpen) {
             overlay.classList.add('open');
             menuBtn.classList.add('open');
-            body.style.overflow = 'hidden'; // Kunci scroll
+            body.style.overflow = 'hidden'; 
         } else {
             overlay.classList.remove('open');
             menuBtn.classList.remove('open');
-            body.style.overflow = ''; // Aktifkan scroll
+            body.style.overflow = ''; 
         }
     }
 
     if (menuBtn && overlay) {
-        // Klik Hamburger
-        menuBtn.addEventListener('click', (e) => {
-            e.stopPropagation();
+        menuBtn.addEventListener('click', () => {
             const isOpen = !overlay.classList.contains('open');
             toggleMobileMenu(isOpen);
         });
 
-        // Klik Tombol Close (X)
         if (closeBtn) {
             closeBtn.addEventListener('click', () => toggleMobileMenu(false));
         }
 
-        // Klik Link Menu otomatis tutup
         const mobileLinks = document.querySelectorAll('.btn-menu, .overlay-content a');
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => toggleMobileMenu(false));
         });
     }
 
-    // 4. Inisialisasi Intersection Observer
+    // 4. Inisialisasi Fitur Lainnya
     initObserver();
+    initSliders(); // Fungsi slider yang sudah dirapikan
+    initSearchFilter();
 });
-
-/* --- Tetap di luar --- */
-
-// Language Switcher Logic
-const langSwitcher = document.getElementById('lang-switcher');
-if (langSwitcher) {
-    langSwitcher.addEventListener('click', (e) => {
-        if (e.target.closest('a')) return; // Jangan toggle kalau klik bendera
-        langSwitcher.classList.toggle('open');
-        e.stopPropagation();
-    });
-}
-
-document.addEventListener('click', () => {
-    if (langSwitcher) langSwitcher.classList.remove('open');
-});
-
-// Slider Dot Logic
-const villaContainer = document.querySelector('.villa-container');
-const dots = document.querySelectorAll('.dot');
-if (villaContainer && dots.length > 0) {
-    villaContainer.addEventListener('scroll', () => {
-        const activeIndex = Math.round(villaContainer.scrollLeft / villaContainer.offsetWidth);
-        dots.forEach((dot, index) => dot.classList.toggle('active', index === activeIndex));
-    });
-}
 
 /* --- Fungsi Pendukung --- */
+
+function initSliders() {
+    // Handling Slider Next
+    document.querySelectorAll('.v-next').forEach(btn => {
+        btn.onclick = function() {
+            const container = this.parentElement.querySelector('.v-slider-container');
+            // Geser 350px biar bisa diklik berkali-kali
+            container.scrollBy({ left: 350, behavior: 'smooth' });
+        };
+    });
+
+    // Handling Slider Prev
+    document.querySelectorAll('.v-prev').forEach(btn => {
+        btn.onclick = function(e) {
+            e.preventDefault();
+            const container = this.parentElement.querySelector('.v-slider-container');
+            container.scrollBy({ left: -350, behavior: 'smooth' });
+        };
+    });
+}
+
+function initSearchFilter() {
+    const searchBtn = document.querySelector('.v-btn-search');
+    if (searchBtn) {
+        searchBtn.addEventListener('click', function() {
+            const selectedGuests = parseInt(document.querySelector('.v-filter-input').value);
+            
+            document.querySelectorAll('.v-card').forEach(card => {
+                const capacityText = card.querySelector('.v-amenities span:first-child').innerText;
+                const capacityValue = parseInt(capacityText.replace(/[^0-9]/g, ''));
+
+                // Logika Filter: Tampilkan jika tamu <=5 atau kapasitas memadai
+                if (selectedGuests === 5 || capacityValue >= selectedGuests) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+            
+            document.querySelector('.v-listing-section').scrollIntoView({ behavior: 'smooth' });
+        });
+    }
+}
+
 function initLetterFalling() {
     const typeElements = document.querySelectorAll('.type-effect');
     typeElements.forEach(el => {
@@ -117,67 +132,22 @@ function initObserver() {
     });
 }
 
-// Tambahkan ini di bawah file HTML lo sebelum tag </body>
-document.querySelectorAll('.next').forEach(button => {
-    button.addEventListener('click', () => {
-        const container = button.parentElement.querySelector('.slider-container');
-        container.scrollBy({ left: 300, behavior: 'smooth' });
+// Language Switcher Logic
+const langSwitcher = document.getElementById('lang-switcher');
+if (langSwitcher) {
+    langSwitcher.addEventListener('click', (e) => {
+        if (e.target.closest('a')) return; 
+        langSwitcher.classList.toggle('open');
+        e.stopPropagation();
     });
+}
+
+document.addEventListener('click', () => {
+    if (langSwitcher) langSwitcher.classList.remove('open');
 });
 
-document.querySelectorAll('.prev').forEach(button => {
-    button.addEventListener('click', () => {
-        const container = button.parentElement.querySelector('.slider-container');
-        container.scrollBy({ left: -300, behavior: 'smooth' });
-    });
-});
-
-document.addEventListener("DOMContentLoaded", function() {
-    // Klik tombol Next
-    document.querySelectorAll('.v-next').forEach(btn => {
-    btn.onclick = function() {
-        // Cari container yang sejajar
-        const container = this.parentElement.querySelector('.v-slider-container');
-        container.scrollBy({ left: container.offsetWidth, behavior: 'smooth' });
-    };
-});
-
-    // Klik tombol Prev
-    document.querySelectorAll('.v-prev').forEach(btn => {
-        btn.onclick = function(e) {
-            e.preventDefault();
-            const container = this.parentElement.querySelector('.v-slider-container');
-            container.scrollBy({ left: -container.clientWidth, behavior: 'smooth' });
-        };
-    });
-});
-
-document.querySelector('.v-btn-search').addEventListener('click', function() {
-    // 1. Ambil angka dari select
-    const selectedGuests = parseInt(document.querySelector('.v-filter-input').value);
-    
-    // 2. Scan semua villa
-    document.querySelectorAll('.v-card').forEach(card => {
-        // Ambil angka dari teks "👤 25 Guests"
-        const capacityText = card.querySelector('.v-amenities span:first-child').innerText;
-        const capacityValue = parseInt(capacityText.replace(/[^0-9]/g, ''));
-
-        // 3. Logika Filter
-        // Khusus pilihan "≤5", kita tampilkan semua villa (asumsi semua villa muat 5 orang)
-        // Untuk pilihan "≥10" dst, hanya tampilkan villa yang kapasitasnya memadai
-        if (selectedGuests === 5 || capacityValue >= selectedGuests) {
-            card.style.display = 'block';
-        } else {
-            card.style.display = 'none';
-        }
-    });
-    
-    // Smooth scroll ke section villa setelah search
-    document.querySelector('.v-listing-section').scrollIntoView({ behavior: 'smooth' });
-});
-
+// Share Function
 async function shareVilla(title, url) {
-    // Cek apakah browser mendukung Web Share API
     if (navigator.share) {
         try {
             await navigator.share({
@@ -185,12 +155,10 @@ async function shareVilla(title, url) {
                 text: 'Cek villa keren di Batu ini: ' + title,
                 url: url,
             });
-            console.log('Berhasil share!');
         } catch (err) {
-            console.log('User membatalkan share');
+            console.log('Share dibatalkan');
         }
     } else {
-        // Fallback kalau di PC: Copy link ke clipboard
         navigator.clipboard.writeText(url).then(() => {
             alert('Link villa berhasil disalin!');
         });
