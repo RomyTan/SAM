@@ -156,19 +156,58 @@ document.addEventListener('click', () => {
 
 // Share Function
 async function shareVilla(title, url) {
-    if (navigator.share) {
+    const finalUrl = url || window.location.href;
+    
+    // Cek ketersediaan navigator.share DAN lingkungan aman
+    if (navigator.share && navigator.canShare) {
         try {
             await navigator.share({
                 title: title,
-                text: 'Cek villa keren di Batu ini: ' + title,
-                url: url,
+                text: 'Cek villa ini: ' + title,
+                url: finalUrl
             });
         } catch (err) {
-            console.log('Share dibatalkan');
+            // Jika user cancel atau browser Huawei nolak
+            copyToClipboard(finalUrl);
         }
     } else {
-        navigator.clipboard.writeText(url).then(() => {
-            alert('Link villa berhasil disalin!');
-        });
+        copyToClipboard(finalUrl);
     }
 }
+
+function copyToClipboard(text) {
+    navigator.clipboard.writeText(text).then(() => {
+        alert('Browser Anda tidak mendukung share langsung. Link villa berhasil disalin!');
+    });
+}
+
+const modalData = {
+    rules: `<h2>Peraturan Villa</h2>
+            <ul>
+                <li>Dilarang merokok di dalam kamar.</li>
+                <li>Check-in jam 14.00, Check-out jam 12.00.</li>
+                <li>Menjaga ketenangan setelah jam 22.00.</li>
+            </ul>`,
+    survey: `<h2>Syarat Survei</h2>
+            <ul>
+                <li>Harap membuat janji minimal 1 hari sebelumnya.</li>
+                <li>Survei hanya bisa dilakukan saat villa kosong.</li>
+            </ul>`
+};
+
+function openModal(type) {
+    document.getElementById('modal-text-content').innerHTML = modalData[type];
+    document.getElementById('rules-modal').style.display = 'flex';
+}
+
+document.getElementById('close-rules').onclick = function() {
+    document.getElementById('rules-modal').style.display = 'none';
+};
+
+// Tutup modal jika user klik di area luar modal
+window.onclick = function(event) {
+    let modal = document.getElementById('rules-modal');
+    if (event.target == modal) {
+        modal.style.display = 'none';
+    }
+};

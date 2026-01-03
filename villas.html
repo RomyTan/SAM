@@ -3,9 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sam Villa Kota Batu | Find Your Perfect Villa</title>
+    <meta name="description" content="Cari villa di Batu dengan kolam renang pribadi? Sam Villa menawarkan pilihan villa terbaik dengan pemandangan gunung dan harga terjangkau. Booking sekarang!">
+    <title>Villa terbaik dari SAM Villa | Villa Terbaik Kota Batu</title>
+    
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://www.samvillabatu.com/villas">
+    <meta property="og:title" content="Pilihan villa terbaik dari SAM Villa - Villa Terbaik Kota Batu">
+    <meta property="og:description" content="Lihat koleksi villa eksklusif kami dengan private pool di Batu. Cocok untuk keluarga dan rombongan.">
+    
+    <meta property="og:image" content="https://www.samvillabatu.com/assets/og-preview-v2.jpg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
 
-    <link rel="icon" type="image/svg+xml" href="assets/vot-icon.svg">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Pilihan villa terbaik dari SAM Villa - Villa Terbaik Kota Batu">
+    <meta name="twitter:description" content="Lihat koleksi villa eksklusif kami dengan private pool di Batu. Cocok untuk keluarga dan rombongan.">
+    <meta name="twitter:image" content="https://www.samvillabatu.com/assets/og-preview-v2.jpg">
+
+    <link rel="icon" type="image/svg+xml" href="assets/vot-icon.png">
     <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"/>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600;700;900&display=swap" rel="stylesheet">
@@ -83,7 +98,6 @@
 
         <div class="copyright-text">
             <p>© 2025 Sam Villa Batu. All Rights Reserved.</p>
-            <p>Villa Rules | Survey Conditions</p>
         </div>
     </div>
     </div>
@@ -603,14 +617,21 @@
         <div class="footer-bottom">
             <p>© 2025 Sam Villa Batu. All Rights Reserved.</p>
             <div class="footer-links">
-                <a href="#">Villa Rules</a>
+                <a href="javascript:void(0)" onclick="openModal('rules')">Villa Rules</a>
                 <span>|</span>
-                <a href="#">Survey Conditions</a>
+                <a href="javascript:void(0)" onclick="openModal('survey')">Survey Conditions</a>
             </div>
         </div>
     </div>
     </footer>
 
+    <div id="rules-modal" class="modal-overlay">
+        <div class="modal-content">
+            <span class="close-modal" id="close-rules">&times;</span>
+            <div id="modal-text-content">
+                </div>
+        </div>
+    </div>
     <script src="js/script.js"></script>
 </body>
 </html>
