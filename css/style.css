@@ -1593,7 +1593,7 @@ nav .logo { transform: translateY(-20px); }
     display: block;
     overflow: hidden;
     position: relative;
-    height: 220px;
+    height: 360px;
     background: #ddd;
 }
 
@@ -1652,7 +1652,7 @@ nav .logo { transform: translateY(-20px); }
     top: 50%;
     transform: translateY(-50%);
     z-index: 999;
-    background: rgba(255,255,255,0.9);
+    background: #FFFFFF;
     border: none;
     width: 30px;
     height: 30px;
@@ -1668,12 +1668,18 @@ nav .logo { transform: translateY(-20px); }
     height: 100%;
     display: flex;
     overflow-x: auto;
-    scroll-snap-type: x mandatory;
+    scroll-snap-type: none; 
     scroll-behavior: smooth;
     scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.v-slider-container::-webkit-scrollbar {
+    display: none;
 }
 
 .v-slide {
+    flex: 0 0 auto;
     min-width: 100%;
     height: 100%;
     object-fit: cover;

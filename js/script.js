@@ -50,21 +50,29 @@ window.addEventListener('DOMContentLoaded', () => {
 /* --- Fungsi Pendukung --- */
 
 function initSliders() {
-    // Handling Slider Next
+    // Tombol Next
     document.querySelectorAll('.v-next').forEach(btn => {
-        btn.onclick = function() {
+        btn.onclick = function(e) {
+            e.preventDefault();
             const container = this.parentElement.querySelector('.v-slider-container');
-            // Geser 350px biar bisa diklik berkali-kali
-            container.scrollBy({ left: 350, behavior: 'smooth' });
+            // Geser ke kanan sejauh lebar container (1 foto penuh)
+            container.scrollTo({
+                left: container.scrollLeft + container.offsetWidth,
+                behavior: 'smooth'
+            });
         };
     });
 
-    // Handling Slider Prev
+    // Tombol Prev (Back)
     document.querySelectorAll('.v-prev').forEach(btn => {
         btn.onclick = function(e) {
             e.preventDefault();
             const container = this.parentElement.querySelector('.v-slider-container');
-            container.scrollBy({ left: -350, behavior: 'smooth' });
+            // Geser ke kiri sejauh lebar container
+            container.scrollTo({
+                left: container.scrollLeft - container.offsetWidth,
+                behavior: 'smooth'
+            });
         };
     });
 }
