@@ -938,11 +938,11 @@ nav .logo { transform: translateY(-20px); }
     }
 
     .why-card {
-        flex: 0 0 80vw; /* Card selebar 80% layar biar kanan kiri kelihatan dikit */
+        flex: 0 0 80vw; 
         width: 80vw;
-        margin: 0 10px;
+        margin-right: 20px; 
         scroll-snap-align: center;
-        /* Spek Glassmorphism lo */
+        
         background: rgba(255, 255, 255, 0.5) !important; 
         backdrop-filter: blur(8px) !important;
         -webkit-backdrop-filter: blur(8px) !important;

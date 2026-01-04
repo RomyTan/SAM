@@ -92,19 +92,37 @@ function initSliders() {
     }
 
     // --- 3. LOGIKA DOTS UNTUK WHY SECTION (MOBILE HOME) ---
-    const whyContainer = document.querySelector('.why-grid-container');
-    const whyDots = document.querySelectorAll('.why-dots .w-dot');
+const whyContainer = document.querySelector('.why-grid-container');
+const whyDots = document.querySelectorAll('.why-dots .w-dot');
 
-    if (whyContainer && whyDots.length > 0) {
-        whyContainer.addEventListener('scroll', () => {
-            const index = Math.round(whyContainer.scrollLeft / whyContainer.offsetWidth);
-            whyDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
-        });
+if (whyContainer && whyDots.length > 0) {
+    whyContainer.addEventListener('scroll', () => {
+        // Ambil lebar satu card (80vw + margin) secara dinamis
+        const firstCard = whyContainer.querySelector('.why-card');
+        if (!firstCard) return;
+        
+        const cardWidth = firstCard.offsetWidth + 20; // 20 adalah margin-right yang gue saranin tadi
+        
+        // Gunakan titik tengah scroll agar perpindahan dot terasa natural
+        const index = Math.floor((whyContainer.scrollLeft + (whyContainer.clientWidth / 2)) / cardWidth);
+        
+        // Batasi index agar tidak out of bounds
+        const finalIndex = Math.max(0, Math.min(index, whyDots.length - 1));
 
         whyDots.forEach((dot, i) => {
-            dot.onclick = () => whyContainer.scrollTo({ left: whyContainer.offsetWidth * i, behavior: 'smooth' });
+            dot.classList.toggle('active', i === finalIndex);
         });
-    }
+    }, { passive: true });
+
+    // Tambahkan juga fungsi klik dot biar sinkron
+    whyDots.forEach((dot, i) => {
+        dot.onclick = () => {
+            const firstCard = whyContainer.querySelector('.why-card');
+            const cardWidth = firstCard.offsetWidth + 20;
+            whyContainer.scrollTo({ left: cardWidth * i, behavior: 'smooth' });
+        };
+    });
+}
 }
 
 function initSearchFilter() {
