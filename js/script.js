@@ -193,11 +193,14 @@ const modalData = {
             <ul>
                 <li>Dilarang merokok di dalam kamar.</li>
                 <li>Check-in jam 14.00, Check-out jam 12.00.</li>
-                <li>Menjaga ketenangan setelah jam 22.00.</li>
+                <li>Menjaga ketenangan setelah jam 23.00.</li>
             </ul>`,
-    survey: `<h2>Syarat Survei</h2>
+    survey: `<h2>Syarat Survey PELANGGAN BARU</h2>
             <ul>
                 <li>Harap membuat janji minimal 1 hari sebelumnya.</li>
+                <li>Survey 1 Villa pertama gratis, tidak dikenakan biaya.</li>
+                <li>Survey lebih dari 1 villa akan dikenakan tarif jasa survey Rp.50.000/Villa (berlaku kelipatan), untuk pengganti biaya transport.</li>
+                <li>Tarif survey gratis jika tamu deal/sewa villa yang telah disurvey.</li>
                 <li>Survei hanya bisa dilakukan saat villa kosong.</li>
             </ul>`
 };
@@ -222,3 +225,25 @@ window.onclick = (event) => {
     const modal = document.getElementById('rules-modal');
     if (event.target == modal) modal.style.display = 'none';
 };
+
+// --- LOGIC LANGUAGE SWITCHER (FIXED) ---
+const langSwitcher = document.getElementById('lang-switcher');
+
+if (langSwitcher) {
+    langSwitcher.addEventListener('click', (e) => {
+        // Mencegah klik menyebar ke document
+        e.stopPropagation();
+        
+        // Cek jika yang diklik bukan link bahasa (biar dropdown gak nutup sebelum pindah halaman)
+        if (!e.target.closest('a')) {
+            langSwitcher.classList.toggle('open');
+        }
+    });
+}
+
+// Menutup dropdown otomatis jika klik di area mana saja selain switcher
+document.addEventListener('click', () => {
+    if (langSwitcher) {
+        langSwitcher.classList.remove('open');
+    }
+});
