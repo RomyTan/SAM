@@ -1668,10 +1668,16 @@ nav .logo { transform: translateY(-20px); }
     height: 100%;
     display: flex;
     overflow-x: auto;
-    scroll-snap-type: none; 
-    scroll-behavior: smooth;
+    scroll-snap-type: x mandatory; 
     scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
     -ms-overflow-style: none;
+}
+
+.v-slider-container img {
+    flex: 0 0 100%;
+    width: 100%;
+    scroll-snap-align: start; 
 }
 
 .v-slider-container::-webkit-scrollbar {

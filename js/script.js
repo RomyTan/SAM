@@ -43,38 +43,68 @@ window.addEventListener('DOMContentLoaded', () => {
 
     // 4. Inisialisasi Fitur Lainnya
     initObserver();
-    initSliders(); // Fungsi slider yang sudah dirapikan
+    initSliders(); 
     initSearchFilter();
 });
 
 /* --- Fungsi Pendukung --- */
 
 function initSliders() {
-    // Tombol Next
-    document.querySelectorAll('.v-next').forEach(btn => {
-        btn.onclick = function(e) {
-            e.preventDefault();
-            const container = this.parentElement.querySelector('.v-slider-container');
-            // Geser ke kanan sejauh lebar container (1 foto penuh)
-            container.scrollTo({
-                left: container.scrollLeft + container.offsetWidth,
-                behavior: 'smooth'
-            });
-        };
+    // 1. Slider Foto di Dalam Card (Villas Page & Home)
+    const photoContainers = document.querySelectorAll('.v-slider-container');
+    
+    photoContainers.forEach(container => {
+        const parent = container.parentElement;
+        const btnNext = parent.querySelector('.v-next');
+        const btnPrev = parent.querySelector('.v-prev');
+
+        if (btnNext) {
+            btnNext.onclick = (e) => {
+                e.preventDefault();
+                // Pakai hitungan sisa scroll biar gak nyangkut di akhir
+                const target = container.scrollLeft + container.clientWidth;
+                container.scrollTo({ left: target, behavior: 'smooth' });
+            };
+        }
+        if (btnPrev) {
+            btnPrev.onclick = (e) => {
+                e.preventDefault();
+                // Kurangi 2-5 pixel ekstra untuk "memancing" browser keluar dari snap point
+                const target = container.scrollLeft - container.clientWidth - 2;
+                container.scrollTo({ left: target, behavior: 'smooth' });
+            };
+        }
     });
 
-    // Tombol Prev (Back)
-    document.querySelectorAll('.v-prev').forEach(btn => {
-        btn.onclick = function(e) {
-            e.preventDefault();
-            const container = this.parentElement.querySelector('.v-slider-container');
-            // Geser ke kiri sejauh lebar container
-            container.scrollTo({
-                left: container.scrollLeft - container.offsetWidth,
-                behavior: 'smooth'
-            });
-        };
-    });
+    // --- 2. LOGIKA DOTS UNTUK VILLA SECTION (HOME) ---
+    const villaContainer = document.querySelector('.villa-container');
+    const villaDots = document.querySelectorAll('.slider-dots .dot');
+
+    if (villaContainer && villaDots.length > 0) {
+        villaContainer.addEventListener('scroll', () => {
+            const index = Math.round(villaContainer.scrollLeft / villaContainer.offsetWidth);
+            villaDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        });
+
+        villaDots.forEach((dot, i) => {
+            dot.onclick = () => villaContainer.scrollTo({ left: villaContainer.offsetWidth * i, behavior: 'smooth' });
+        });
+    }
+
+    // --- 3. LOGIKA DOTS UNTUK WHY SECTION (MOBILE HOME) ---
+    const whyContainer = document.querySelector('.why-grid-container');
+    const whyDots = document.querySelectorAll('.why-dots .w-dot');
+
+    if (whyContainer && whyDots.length > 0) {
+        whyContainer.addEventListener('scroll', () => {
+            const index = Math.round(whyContainer.scrollLeft / whyContainer.offsetWidth);
+            whyDots.forEach((dot, i) => dot.classList.toggle('active', i === index));
+        });
+
+        whyDots.forEach((dot, i) => {
+            dot.onclick = () => whyContainer.scrollTo({ left: whyContainer.offsetWidth * i, behavior: 'smooth' });
+        });
+    }
 }
 
 function initSearchFilter() {
@@ -87,7 +117,6 @@ function initSearchFilter() {
                 const capacityText = card.querySelector('.v-amenities span:first-child').innerText;
                 const capacityValue = parseInt(capacityText.replace(/[^0-9]/g, ''));
 
-                // Logika Filter: Tampilkan jika tamu <=5 atau kapasitas memadai
                 if (selectedGuests === 5 || capacityValue >= selectedGuests) {
                     card.style.display = 'block';
                 } else {
@@ -140,47 +169,7 @@ function initObserver() {
     });
 }
 
-// Language Switcher Logic
-const langSwitcher = document.getElementById('lang-switcher');
-if (langSwitcher) {
-    langSwitcher.addEventListener('click', (e) => {
-        if (e.target.closest('a')) return; 
-        langSwitcher.classList.toggle('open');
-        e.stopPropagation();
-    });
-}
-
-document.addEventListener('click', () => {
-    if (langSwitcher) langSwitcher.classList.remove('open');
-});
-
-// Share Function
-async function shareVilla(title, url) {
-    const finalUrl = url || window.location.href;
-    
-    // Cek ketersediaan navigator.share DAN lingkungan aman
-    if (navigator.share && navigator.canShare) {
-        try {
-            await navigator.share({
-                title: title,
-                text: 'Cek villa ini: ' + title,
-                url: finalUrl
-            });
-        } catch (err) {
-            // Jika user cancel atau browser Huawei nolak
-            copyToClipboard(finalUrl);
-        }
-    } else {
-        copyToClipboard(finalUrl);
-    }
-}
-
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text).then(() => {
-        alert('Browser Anda tidak mendukung share langsung. Link villa berhasil disalin!');
-    });
-}
-
+// Modal Logic
 const modalData = {
     rules: `<h2>Peraturan Villa</h2>
             <ul>
@@ -196,18 +185,22 @@ const modalData = {
 };
 
 function openModal(type) {
-    document.getElementById('modal-text-content').innerHTML = modalData[type];
-    document.getElementById('rules-modal').style.display = 'flex';
+    const modal = document.getElementById('rules-modal');
+    const content = document.getElementById('modal-text-content');
+    if (modal && content) {
+        content.innerHTML = modalData[type];
+        modal.style.display = 'flex';
+    }
 }
 
-document.getElementById('close-rules').onclick = function() {
-    document.getElementById('rules-modal').style.display = 'none';
-};
+const closeModalBtn = document.getElementById('close-rules');
+if (closeModalBtn) {
+    closeModalBtn.onclick = () => {
+        document.getElementById('rules-modal').style.display = 'none';
+    };
+}
 
-// Tutup modal jika user klik di area luar modal
-window.onclick = function(event) {
-    let modal = document.getElementById('rules-modal');
-    if (event.target == modal) {
-        modal.style.display = 'none';
-    }
+window.onclick = (event) => {
+    const modal = document.getElementById('rules-modal');
+    if (event.target == modal) modal.style.display = 'none';
 };
