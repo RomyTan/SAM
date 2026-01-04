@@ -1534,9 +1534,12 @@ nav .logo { transform: translateY(-20px); }
     margin-bottom: 5px;
     color: #888;
 }
+.v-filter-input, .v-btn-search, .v-filter-input option {
+    font-family: 'Poppins', sans-serif !important;
+}
 
 .v-filter-input {
-    height: 40px;
+    height: 44px;
     width: 100%;
     border: 1px solid #ddd;
     padding: 0 10px;
@@ -1546,6 +1549,7 @@ nav .logo { transform: translateY(-20px); }
 }
 
 .v-btn-search {
+    height: 44px;
     align-self: flex-end;
     background: #008DF2;
     color: #fff;
@@ -1882,4 +1886,107 @@ nav .logo { transform: translateY(-20px); }
     font-size: 24px;
     cursor: pointer;
     color: #333;
+}
+
+/* Container Lightbox */
+.v-lightbox {
+    display: none; /* Sembunyi diawal */
+    position: fixed;
+    z-index: 9999;
+    top: 0; left: 0;
+    width: 100%; height: 100%;
+    background: rgba(0, 0, 0, 0.9); /* Hitam transparan pekat */
+    justify-content: center;
+    align-items: center;
+    cursor: zoom-out;
+}
+
+/* Gambar di dalam Lightbox */
+#v-lightbox-img {
+    max-width: 1280px; /* Request lo */
+    max-height: 860px;
+    width: 90%;
+    object-fit: contain;
+    border: 3px solid white;
+    border-radius: 5px;
+    cursor: default;
+}
+
+/* Tombol Close */
+.v-close {
+    position: absolute;
+    top: 20px;
+    right: 35px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.v-header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.v-extra-details {
+    display: none;
+    padding-top: 15px;
+    margin-top: 10px;
+    list-style: none;
+    padding: 0;
+    font-size: 0.9em;
+    color: #555;
+}
+
+.v-extra-details ul {
+    list-style: none;
+    padding: 0;
+    margin: 10px 0 0 0; /* Hanya margin atas untuk menjauh dari judulnya */
+}
+
+.v-extra-details li {
+    margin-bottom: 4px; /* Jarak antar poin fasilitas */
+    font-size: 0.8rem;
+    color: #444;
+}
+
+.v-expand-btn {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+/* Kotak Abu-abu */
+.v-arrow-box {
+    width: 32px;
+    height: 32px;
+    background-color: #b5b5b5; /* Warna abu-abu sesuai SS */
+    border-radius: 6px; /* Rounded corner halus */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: background-color 0.3s;
+}
+
+/* Icon Chevron (Garis Tipis) */
+.v-chevron {
+    width: 10px;
+    height: 10px;
+    border-right: 2.5px solid white; /* Ketebalan garis */
+    border-bottom: 2.5px solid white;
+    transform: translateY(-2px) rotate(45deg); /* Membentuk huruf V */
+    display: inline-block;
+    transition: transform 0.3s ease;
+}
+
+/* Efek pas dklik (Panah muter ke atas) */
+.v-expand-btn.active .v-chevron {
+    transform: translateY(2px) rotate(-135deg);
+}
+
+.v-expand-btn.active .v-arrow-box {
+    background-color: #8e8e8e; /* Sedikit lebih gelap pas aktif */
 }

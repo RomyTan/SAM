@@ -115,15 +115,15 @@
                 <div class="v-hero-filter-bar">
                     
                     <div class="v-filter-item">
-                        <label><i class="fas fa-users"></i> Jumlah Tamu</label>
+                        <label><i class="fas fa-users"></i> Jumlah Guests</label>
                         <select class="v-filter-input">
-                            <option value="5">≤5 Guest</option>
-                            <option value="10">≥10 Tamu</option>
-                            <option value="15">≥15 Tamu</option>
-                            <option value="20">≥20 Tamu</option>
-                            <option value="30">≥30 Tamu</option>
-                            <option value="40">≥40 Tamu</option>
-                            <option value="50">≥50 Tamu</option>
+                            <option value="5">≤5 Guests</option>
+                            <option value="10">≥10 Guests</option>
+                            <option value="15">≥15 Guests</option>
+                            <option value="20">≥20 Guests</option>
+                            <option value="30">≥30 Guests</option>
+                            <option value="40">≥40 Guests</option>
+                            <option value="50">≥50 Guests</option>
                         </select>
                     </div>
                     <button class="v-btn-search">Search</button>
@@ -137,8 +137,9 @@
     </section>
 
     <section class="v-listing-section">
-    <div class="v-card">
+    <div class="v-card" id="omah-tani">
         <div class="v-image-box">
+            <span class="label-best">FAVORIT</span>
             <div class="v-slider-container">
                 <img src="assets/villas/omah-tani/ot-0.jpg" class="v-slide">
                 <img src="assets/villas/omah-tani/ot-1.jpg" class="v-slide">
@@ -156,25 +157,51 @@
             <button class="v-slider-btn v-next">❯</button>
         </div>
         <div class="v-info">
-            <h3 class="v-name">Villa Omah Tani</h3>
-            <p class="v-loc">Batu, Malang</p>
+            <div class="v-header-row">
+                <div>
+                    <h3 class="v-name">Villa Omah Tani</h3>
+                    <p class="v-loc">Batu, Malang</p>
+                </div>
+                    <button class="v-expand-btn" onclick="toggleDetails(this)">
+                        <div class="v-arrow-box">
+                            <span class="v-chevron"></span>
+                        </div>
+                    </button>
+            </div>
             <div class="v-amenities">
-                <span>👤 25 Tamu</span>
+                <span>👤 25 Guests</span>
                 <span>🛏️ 5 Bed</span>
                 <span>🚿 3 Bath</span>
                 <span>🏊 Pool</span>
             </div>
+            <div class="v-extra-details">
+                <p><strong>Fasilitas Lainnya:</strong></p>
+                <ul>
+                    <li>🥽 Kolam Renang 6.5m x 3.5m</li>
+                    <li>🛏️ Gratis 4x Extrabed</li>
+                    <li>🎱 Billiard 7ft</li>
+                    <li>🎵 Karaoke</li>
+                    <li>♨️ Alat BBQ</li>
+                    <li>🅿️ Parkir Luas (10Mobil)</li>
+                    <li>🦖 Dekat Jatimpark-3 & Batos</li>
+                </ul>
+            </div>
             <div class="v-footer">
                 <span class="v-price">Rp -</span>
                 <span class="v-buttons">
-                    <a href="javascript:void(0)" class="v-shr" onclick="shareVilla('Villa Omah Tani', window.location.href)">Share</a>
+                    <a href="javascript:void(0)" class="v-shr" onclick="shareVilla('Villa Omah Tani', 'omah-tani')">Share</a>
                     <a href="https://wa.me/6282141585265" class="v-btn">Contact</a>
                 </span>
             </div>
         </div>
     </div>
 
-    <div class="v-card">
+    <div id="v-lightbox" class="v-lightbox" onclick="closeLightbox()">
+        <span class="v-close">&times;</span>
+        <img id="v-lightbox-img">
+    </div>
+
+    <div class="v-card" id="w2-baloga">
         <div class="v-image-box">
             <div class="v-slider-container">
                 <img src="assets/villas/w2-baloga/w2b-1.jpg" class="v-slide">
@@ -195,13 +222,34 @@
             <button class="v-slider-btn v-next">❯</button>
         </div>
         <div class="v-info">
-            <h3 class="v-name">Villa W2-Baloga</h3>
-            <p class="v-loc">Batu, Malang</p>
+            <div class="v-header-row">
+                <div>
+                    <h3 class="v-name">Villa W2-Baloga</h3>
+                    <p class="v-loc">Batu, Malang</p>
+                </div>
+                    <button class="v-expand-btn" onclick="toggleDetails(this)">
+                        <div class="v-arrow-box">
+                            <span class="v-chevron"></span>
+                        </div>
+                    </button>
+            </div>
             <div class="v-amenities">
-                <span>👤 30 Tamu</span>
+                <span>👤 30 Guests</span>
                 <span>🛏️ 6 Bed</span>
                 <span>🚿 5 Bath</span>
                 <span>🏊 Pool</span>
+            </div>
+            <div class="v-extra-details">
+                <p><strong>Fasilitas Lainnya:</strong></p>
+                <ul>
+                    <li>🥽 Kolam Renang</li>
+                    <li>🛏️ Gratis 6x Extrabed</li>
+                    <li>🎮 PS4</li>
+                    <li>🎵 Karaoke</li>
+                    <li>♨️ Alat BBQ</li>
+                    <li>🍽️ Kitchen Set</li>
+                    <li>🌸 Dekat wisata Baloga</li>
+                </ul>
             </div>
             <div class="v-footer">
                 <span class="v-price">Rp -</span>
@@ -213,7 +261,7 @@
         </div>
     </div>
 
-    <div class="v-card">
+    <div class="v-card" id="lembah-tani">
         <div class="v-image-box">
             <div class="v-slider-container">
                 <img src="assets/villas/lembah-tani/lt-1.jpg" class="v-slide">
@@ -230,13 +278,34 @@
             <button class="v-slider-btn v-next">❯</button>
         </div>
         <div class="v-info">
-            <h3 class="v-name">Villa Lembah Tani</h3>
-            <p class="v-loc">Batu, Malang</p>
+            <div class="v-header-row">
+                <div>
+                    <h3 class="v-name">Villa Lembah Tani</h3>
+                    <p class="v-loc">Batu, Malang</p>
+                </div>
+                    <button class="v-expand-btn" onclick="toggleDetails(this)">
+                        <div class="v-arrow-box">
+                            <span class="v-chevron"></span>
+                        </div>
+                    </button>
+            </div>
             <div class="v-amenities">
-                <span>👤 25 Tamu</span>
+                <span>👤 25 Guests</span>
                 <span>🛏️ 5 Bed</span>
                 <span>🚿 5 Bath</span>
                 <span>🏊 Pool</span>
+            </div>
+            <div class="v-extra-details">
+                <p><strong>Fasilitas Lainnya:</strong></p>
+                <ul>
+                    <li>🥽 Kolam Renang</li>
+                    <li>🏠 Rooftop</li>
+                    <li>🎱 Billiard</li>
+                    <li>🎵 Karaoke</li>
+                    <li>♨️ Alat BBQ</li>
+                    <li>🆓 Wifi</li>
+                    <li>🏝️ Dekat Tempat Wisata</li>
+                </ul>
             </div>
             <div class="v-footer">
                 <span class="v-price">Rp -</span>
@@ -248,7 +317,7 @@
         </div>
     </div>
 
-    <div class="v-card">
+    <div class="v-card" id="casade">
         <div class="v-image-box">
             <div class="v-slider-container">
                 <img src="assets/villas/casade/casade-1.jpg" class="v-slide">
@@ -265,13 +334,34 @@
             <button class="v-slider-btn v-next">❯</button>
         </div>
         <div class="v-info">
-            <h3 class="v-name">Villa Casa De</h3>
-            <p class="v-loc">Batu, Malang</p>
+            <div class="v-header-row">
+                <div>
+                    <h3 class="v-name">Villa Casa De</h3>
+                    <p class="v-loc">Batu, Malang</p>
+                </div>
+                    <button class="v-expand-btn" onclick="toggleDetails(this)">
+                        <div class="v-arrow-box">
+                            <span class="v-chevron"></span>
+                        </div>
+                    </button>
+            </div>
             <div class="v-amenities">
-                <span>👤 15 Tamu</span>
+                <span>👤 15 Guests</span>
                 <span>🛏️ 3 Bed</span>
                 <span>🚿 3 Bath</span>
                 <span>🏊 Pool</span>
+            </div>
+            <div class="v-extra-details">
+                <p><strong>Fasilitas Lainnya:</strong></p>
+                <ul>
+                    <li>🥽 Kolam Renang Infinity</li>
+                    <li>🍽️ Kitchen Set</li>
+                    <li>🎱 Billiard</li>
+                    <li>🎵 Karaoke</li>
+                    <li>♨️ Alat BBQ</li>
+                    <li>🆓 Wifi</li>
+                    <li>🏝️ Dekat Tempat Wisata</li>
+                </ul>
             </div>
             <div class="v-footer">
                 <span class="v-price">Rp -</span>
@@ -283,7 +373,7 @@
         </div>
     </div>
 
-    <div class="v-card">
+    <div class="v-card" id="sarga">
         <div class="v-image-box">
             <div class="v-slider-container">
                 <img src="assets/villas/sarga/sarga-1.jpg" class="v-slide">
@@ -303,13 +393,34 @@
             <button class="v-slider-btn v-next">❯</button>
         </div>
         <div class="v-info">
-            <h3 class="v-name">Villa Sarga</h3>
-            <p class="v-loc">Batu, Malang</p>
+            <div class="v-header-row">
+                <div>
+                    <h3 class="v-name">Villa Sarga</h3>
+                    <p class="v-loc">Batu, Malang</p>
+                </div>
+                    <button class="v-expand-btn" onclick="toggleDetails(this)">
+                        <div class="v-arrow-box">
+                            <span class="v-chevron"></span>
+                        </div>
+                    </button>
+            </div>
             <div class="v-amenities">
-                <span>👤 30 Tamu</span>   
+                <span>👤 30 Guests</span>   
                 <span>🛏️ 6 Bed</span>
                 <span>🚿 5 Bath</span>
                 <span>🏊 Pool</span>
+            </div>
+            <div class="v-extra-details">
+                <p><strong>Fasilitas Lainnya:</strong></p>
+                <ul>
+                    <li>🥽 Kolam Renang</li>
+                    <li>🏠 Rooftop</li>
+                    <li>🎮 PS5</li>
+                    <li>🎵 Karaoke</li>
+                    <li>♨️ Alat BBQ</li>
+                    <li>🆓 Wifi</li>
+                    <li>🛏️ Gratis 6x Extrabed</li>
+                </ul>
             </div>
             <div class="v-footer">
                 <span class="v-price">Rp -</span>
@@ -321,8 +432,9 @@
         </div>
     </div>
 
-    <div class="v-card">
+    <div class="v-card" id="v-home">
         <div class="v-image-box">
+            <span class="label-best">FAVORIT</span>
             <div class="v-slider-container">
                 <img src="assets/villas/v-home/v-home-1.jpg" class="v-slide">
                 <img src="assets/villas/v-home/v-home-2.jpg" class="v-slide">
@@ -341,13 +453,34 @@
             <button class="v-slider-btn v-next">❯</button>
         </div>
         <div class="v-info">
-            <h3 class="v-name">Villa Home</h3>
-            <p class="v-loc">Batu, Malang</p>
+            <div class="v-header-row">
+                <div>
+                    <h3 class="v-name">Villa Home</h3>
+                    <p class="v-loc">Batu, Malang</p>
+                </div>
+                    <button class="v-expand-btn" onclick="toggleDetails(this)">
+                        <div class="v-arrow-box">
+                            <span class="v-chevron"></span>
+                        </div>
+                    </button>
+            </div>
             <div class="v-amenities">
-                <span>👤 50 Tamu</span>
+                <span>👤 50 Guests</span>
                 <span>🛏️ 9 Bed</span>
                 <span>🚿 4 Bath</span>
                 <span>🏊 Pool</span>
+            </div>
+            <div class="v-extra-details">
+                <p><strong>Fasilitas Lainnya:</strong></p>
+                <ul>
+                    <li>🥽 Kolam Renang</li>
+                    <li>🎱 Billiard</li>
+                    <li>🎵 Karaoke</li>
+                    <li>🍽️ Kitchen Set</li>
+                    <li>♨️ Alat BBQ</li>
+                    <li>🏠 Rooftop</li>
+                    <li>🏝️ View Hutan Pinus</li>
+                </ul>
             </div>
             <div class="v-footer">
                 <span class="v-price">Rp -</span>
@@ -359,7 +492,7 @@
         </div>
     </div>
 
-    <div class="v-card">
+    <div class="v-card" id="alibaba">
         <div class="v-image-box">
             <div class="v-slider-container">
                 <img src="assets/villas/alibaba/alibaba-1.jpg" class="v-slide">
@@ -380,13 +513,34 @@
             <button class="v-slider-btn v-next">❯</button>
         </div>
         <div class="v-info">
-            <h3 class="v-name">Villa Alibaba</h3>
-            <p class="v-loc">Batu, Malang</p>
+            <div class="v-header-row">
+                <div>
+                    <h3 class="v-name">Villa Alibaba</h3>
+                    <p class="v-loc">Batu, Malang</p>
+                </div>
+                    <button class="v-expand-btn" onclick="toggleDetails(this)">
+                        <div class="v-arrow-box">
+                            <span class="v-chevron"></span>
+                        </div>
+                    </button>
+            </div>
             <div class="v-amenities">
-                <span>👤 20 Tamu</span>
+                <span>👤 20 Guests</span>
                 <span>🛏️ 4 Bed</span>
                 <span>🚿 4 Bath</span>
                 <span>🏊 Pool</span>
+            </div>
+            <div class="v-extra-details">
+                <p><strong>Fasilitas Lainnya:</strong></p>
+                <ul>
+                    <li>🥽 Kolam Renang</li>
+                    <li>🍽️ Kitchen Set</li>
+                    <li>🎮 PS4</li>
+                    <li>🎵 Karaoke</li>
+                    <li>🏠 Rooftop</li>
+                    <li>🆓 Wifi</li>
+                    <li>🏝️ Dekat Tempat Wisata</li>
+                </ul>
             </div>
             <div class="v-footer">
                 <span class="v-price">Rp -</span>
@@ -398,7 +552,7 @@
         </div>
     </div>
 
-    <div class="v-card">
+    <div class="v-card" id="v-lavida">
         <div class="v-image-box">
             <div class="v-slider-container">
                 <img src="assets/villas/v-lavida/v-lavida-1.jpg" class="v-slide">
@@ -420,13 +574,32 @@
             <button class="v-slider-btn v-next">❯</button>
         </div>
         <div class="v-info">
-            <h3 class="v-name">Villa La-Vida</h3>
-            <p class="v-loc">Batu, Malang</p>
+            <div class="v-header-row">
+                <div>
+                    <h3 class="v-name">Villa La-Vida</h3>
+                    <p class="v-loc">Batu, Malang</p>
+                </div>
+                    <button class="v-expand-btn" onclick="toggleDetails(this)">
+                        <div class="v-arrow-box">
+                            <span class="v-chevron"></span>
+                        </div>
+                    </button>
+            </div>
             <div class="v-amenities">
-                <span>👤 15 Tamu</span>
+                <span>👤 15 Guests</span>
                 <span>🛏️ 3 Bed</span>
                 <span>🚿 3 Bath</span>
                 <span>🏊 Pool</span>
+            </div>
+            <div class="v-extra-details">
+                <p><strong>Fasilitas Lainnya:</strong></p>
+                <ul>
+                    <li>🥽 Kolam Renang</li>
+                    <li>🍽️ Kitchen Set</li>
+                    <li>🎵 Karaoke</li>
+                    <li>🆓 Wifi</li>
+                    <li>🏝️ Dekat Tempat Wisata</li>
+                </ul>
             </div>
             <div class="v-footer">
                 <span class="v-price">Rp -</span>
@@ -438,7 +611,7 @@
         </div>
     </div>
 
-    <div class="v-card">
+    <div class="v-card" id="Ahsan">
         <div class="v-image-box">
             <div class="v-slider-container">
                 <img src="assets/villas/v-ahsan-batos/ahsan-1.jpg" class="v-slide">
@@ -457,13 +630,34 @@
             <button class="v-slider-btn v-next">❯</button>
         </div>
         <div class="v-info">
-            <h3 class="v-name">Villa Ahsan</h3>
-            <p class="v-loc">Batu, Malang</p>
+            <div class="v-header-row">
+                <div>
+                    <h3 class="v-name">Villa Ahsan</h3>
+                    <p class="v-loc">Batu, Malang</p>
+                </div>
+                    <button class="v-expand-btn" onclick="toggleDetails(this)">
+                        <div class="v-arrow-box">
+                            <span class="v-chevron"></span>
+                        </div>
+                    </button>
+            </div>
             <div class="v-amenities">
-                <span>👤 30 Tamu</span>
+                <span>👤 30 Guests</span>
                 <span>🛏️ 4 Bed</span>
                 <span>🚿 3 Bath</span>
                 <span>🏊 Pool</span>
+            </div>
+            <div class="v-extra-details">
+                <p><strong>Fasilitas Lainnya:</strong></p>
+                <ul>
+                    <li>🥽 Kolam Renang</li>
+                    <li>🍽️ Kitchen Set</li>
+                    <li>🛏️ Gratis 2x Extrabed</li>
+                    <li>🎵 Karaoke</li>
+                    <li>♨️ Alat BBQ</li>
+                    <li>🆓 Wifi</li>
+                    <li>🌇 Dekat Pusat Kota</li>
+                </ul>
             </div>
             <div class="v-footer">
                 <span class="v-price">Rp -</span>
@@ -475,7 +669,7 @@
         </div>
     </div>
 
-    <div class="v-card">
+    <div class="v-card" id="altea">
         <div class="v-image-box">
             <div class="v-slider-container">
                 <img src="assets/villas/altea/altea-1.jpg" class="v-slide">
@@ -497,13 +691,34 @@
             <button class="v-slider-btn v-next">❯</button>
         </div>
         <div class="v-info">
-            <h3 class="v-name">Villa Altea</h3>
-            <p class="v-loc">Batu, Malang</p>
+            <div class="v-header-row">
+                <div>
+                    <h3 class="v-name">Villa Altea</h3>
+                    <p class="v-loc">Batu, Malang</p>
+                </div>
+                    <button class="v-expand-btn" onclick="toggleDetails(this)">
+                        <div class="v-arrow-box">
+                            <span class="v-chevron"></span>
+                        </div>
+                    </button>
+            </div>
             <div class="v-amenities">
-                <span>👤 15 Tamu</span>
+                <span>👤 15 Guests</span>
                 <span>🛏️ 4 Bed</span>
                 <span>🚿 3 Bath</span>
                 <span>🏊 Pool</span>
+            </div>
+            <div class="v-extra-details">
+                <p><strong>Fasilitas Lainnya:</strong></p>
+                <ul>
+                    <li>🥽 Kolam Renang</li>
+                    <li>🍽️ Kitchen Set</li>
+                    <li>🎱 Billiard</li>
+                    <li>🎵 Karaoke</li>
+                    <li>♨️ Alat BBQ</li>
+                    <li>🆓 Wifi</li>
+                    <li>🎡 Dekat wisata BNS</li>
+                </ul>
             </div>
             <div class="v-footer">
                 <span class="v-price">Rp -</span>
@@ -515,7 +730,7 @@
         </div>
     </div>
 
-    <div class="v-card">
+    <div class="v-card" id="bandura">
         <div class="v-image-box">
             <div class="v-slider-container">
                 <img src="assets/villas/v-bandura/bandura-1.jpg" class="v-slide">
@@ -535,13 +750,34 @@
             <button class="v-slider-btn v-next">❯</button>
         </div>
         <div class="v-info">
-            <h3 class="v-name">Villa Bandura</h3>
-            <p class="v-loc">Batu, Malang</p>
+            <div class="v-header-row">
+                <div>
+                    <h3 class="v-name">Villa Bandura</h3>
+                    <p class="v-loc">Batu, Malang</p>
+                </div>
+                    <button class="v-expand-btn" onclick="toggleDetails(this)">
+                        <div class="v-arrow-box">
+                            <span class="v-chevron"></span>
+                        </div>
+                    </button>
+            </div>
             <div class="v-amenities">
-                <span>👤 20 Tamu</span>
+                <span>👤 20 Guests</span>
                 <span>🛏️ 5 Bed</span>
                 <span>🚿 3 Bath</span>
                 <span>🏊 Pool</span>
+            </div>
+            <div class="v-extra-details">
+                <p><strong>Fasilitas Lainnya:</strong></p>
+                <ul>
+                    <li>🥽 Kolam Renang</li>
+                    <li>🍽️ Kitchen Set</li>
+                    <li>🎱 Billiard</li>
+                    <li>🎵 Karaoke</li>
+                    <li>♨️ Alat BBQ</li>
+                    <li>🆓 Wifi</li>
+                    <li>🎡 Dekat wisata BNS</li>
+                </ul>
             </div>
             <div class="v-footer">
                 <span class="v-price">Rp -</span>
@@ -553,7 +789,7 @@
         </div>
     </div>
 
-    <div class="v-card">
+    <div class="v-card" id="queen">
         <div class="v-image-box">
             <div class="v-slider-container">
                 <img src="assets/villas/queen/queen-1.jpg" class="v-slide">
@@ -571,13 +807,34 @@
             <button class="v-slider-btn v-next">❯</button>
         </div>
         <div class="v-info">
-            <h3 class="v-name">Villa Queen</h3>
-            <p class="v-loc">Batu, Malang</p>
+            <div class="v-header-row">
+                <div>
+                    <h3 class="v-name">Villa Queen</h3>
+                    <p class="v-loc">Batu, Malang</p>
+                </div>
+                    <button class="v-expand-btn" onclick="toggleDetails(this)">
+                        <div class="v-arrow-box">
+                            <span class="v-chevron"></span>
+                        </div>
+                    </button>
+            </div>
             <div class="v-amenities">
-                <span>👤 20 Tamu</span>
+                <span>👤 20 Guests</span>
                 <span>🛏️ 4 Bed</span>
                 <span>🚿 4 Bath</span>
                 <span>🏊 Pool</span>
+            </div>
+            <div class="v-extra-details">
+                <p><strong>Fasilitas Lainnya:</strong></p>
+                <ul>
+                    <li>🥽 Kolam Renang</li>
+                    <li>🍽️ Kitchen Set</li>
+                    <li>🎱 Billiard</li>
+                    <li>🎵 Karaoke</li>
+                    <li>♨️ Alat BBQ</li>
+                    <li>🛏️ Gratis 4x Extrabed</li>
+                    <li>🎡 Dekat wisata BNS</li>
+                </ul>
             </div>
             <div class="v-footer">
                 <span class="v-price">Rp -</span>

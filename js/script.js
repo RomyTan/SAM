@@ -247,3 +247,39 @@ document.addEventListener('click', () => {
         langSwitcher.classList.remove('open');
     }
 });
+
+function shareVilla(name, villaId) {
+    // Ini buat bikin link tujuan: contoh: samvilla.id/villas.html#omah-tani
+    const shareUrl = window.location.origin + window.location.pathname + '#' + villaId;
+
+    // Cek apakah browser support fitur Share bawaan (biasanya di HP)
+    if (navigator.share) {
+        navigator.share({
+            title: name,
+            text: 'Cek villa keren ini di SAM Villa: ' + name,
+            url: shareUrl,
+        })
+        .then(() => console.log('Berhasil share'))
+        .catch((error) => console.log('Gagal share', error));
+    } else {
+        // Fallback: Kalau buka di PC, otomatis Copy Link ke Clipboard
+        navigator.clipboard.writeText(shareUrl).then(() => {
+            alert('Link ' + name + ' berhasil disalin ke clipboard!');
+        });
+    }
+}
+
+// --- 1. LOGIC EXPAND FASILITAS ---
+function toggleDetails(btn) {
+    const infoContainer = btn.closest('.v-info');
+    const extraDetails = infoContainer.querySelector('.v-extra-details');
+    
+    // Toggle class active untuk animasi panah
+    btn.classList.toggle('active');
+
+    if (extraDetails.style.display === "none" || extraDetails.style.display === "") {
+        extraDetails.style.display = "block";
+    } else {
+        extraDetails.style.display = "none";
+    }
+}
