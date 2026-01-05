@@ -1734,131 +1734,6 @@ nav .logo { transform: translateY(-20px); }
 
 }
 
-/*  ===========================================  */
-/*  ================= NEWS PAGE ===============  */
-/*  ===========================================  */
-
-.n-hero {
-    width: 100%;
-    height: 100vh;
-    position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.n-hero-bg-container {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-    left: 0;
-}
-
-.hero-bg {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    opacity: 0.9;
-}
-
-.n-container {
-    position: relative;
-    width: 85%;
-    height: 90%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: flex-end;
-    z-index: 10;
-}
-
-.n-mascot-wrapper {
-    flex: 1;
-}
-
-.n-mascot {
-    height: 70vh;
-    display: block;
-}
-
-.n-hero-text {
-    flex: 1;
-    padding-bottom: 20px;
-}
-
-.n-hero-text h1 {
-    font-size: 5rem;
-    font-weight: 900;
-    color: #202020;
-    line-height: 1.1;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-}
-
-@media (max-width: 920px) {
-    .n-hero {
-        min-height: 110vh;
-        width: 100%;
-        position: relative;
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        margin-bottom: -102px;
-    }
-    
-    .n-hero-bg {
-        width: 100%;
-        min-height: 110vh;
-        object-fit: cover;
-        position: absolute;
-        top: 0;
-        left: 0;
-    }
-
-    .n-hero-bg-container {
-        position: absolute;
-        
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-    }
-
-    .n-mascot {
-        height: 65vh !important;
-        position: absolute;
-        bottom: 17%;
-        left: -20%;
-        z-index: 10;
-    }
-
-    .n-container.hero-content {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        height: 100%;
-        width: 100%;
-        max-width: 100%;
-        margin: 0;
-        padding-bottom: 20%;
-        position: relative;
-    }
-
-    .n-hero-text {
-        flex: none; 
-        width: 100%;
-        text-align: center;
-        z-index: 30;
-    }
-
-    .n-hero-text h1 {
-        font-size: 3rem !important;
-        line-height: 1.1;
-        display: block;
-    }
-}
-
 .modal-overlay {
     display: none; 
     position: fixed;
@@ -1990,3 +1865,236 @@ nav .logo { transform: translateY(-20px); }
 .v-expand-btn.active .v-arrow-box {
     background-color: #8e8e8e; /* Sedikit lebih gelap pas aktif */
 }
+
+
+/*  ===========================================  */
+/*  ================= NEWS PAGE ===============  */
+/*  ===========================================  */
+
+.n-hero {
+    width: 100%;
+    height: 100vh;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.n-hero-bg-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+}
+
+.hero-bg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.9;
+}
+
+.n-container {
+    position: relative;
+    width: 85%;
+    height: 90%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+    z-index: 10;
+}
+
+.n-mascot-wrapper {
+    flex: 1;
+}
+
+.n-mascot {
+    height: 70vh;
+    display: block;
+}
+
+.n-hero-text {
+    flex: 1;
+    padding-bottom: 20px;
+}
+
+.n-hero-text h1 {
+    font-size: 5rem;
+    font-weight: 900;
+    color: #202020;
+    line-height: 1.1;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+@media (max-width: 920px) {
+    .n-hero {
+        min-height: 110vh;
+        width: 100%;
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        margin-bottom: -102px;
+    }
+    
+    .n-hero-bg {
+        width: 100%;
+        min-height: 110vh;
+        object-fit: cover;
+        position: absolute;
+        top: 0;
+        left: 0;
+    }
+
+    .n-hero-bg-container {
+        position: absolute;
+        
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    .n-mascot {
+        height: 65vh !important;
+        position: absolute;
+        bottom: 17%;
+        left: -20%;
+        z-index: 10;
+    }
+
+    .n-container.hero-content {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        height: 100%;
+        width: 100%;
+        max-width: 100%;
+        margin: 0;
+        padding-bottom: 20%;
+        position: relative;
+    }
+
+    .n-hero-text {
+        flex: none; 
+        width: 100%;
+        text-align: center;
+        z-index: 30;
+    }
+
+    .n-hero-text h1 {
+        font-size: 3rem !important;
+        line-height: 1.1;
+        display: block;
+    }
+}
+
+.news-page { max-width: 1440px; margin: 0 auto; padding: 20px; font-family: sans-serif; }
+.news-section { margin-bottom: 50px; }
+
+/* Header & Title */
+.news-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 20px; }
+.news-title { font-size: 1.2rem; font-weight: bold; border-left: 4px solid #007bff; padding-left: 10px; }
+
+/* Nav Buttons */
+.nav-btn, .show-all { background: #eee; border: none; padding: 8px 12px; border-radius: 6px; cursor: pointer; font-size: 0.8rem; }
+.news-nav { display: flex; gap: 8px; }
+
+/* Video Grid (4 Kolom) */
+.news-video-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 15px; }
+.video-card { 
+    width: 100%;
+    height: 80vh;
+    background: #fff;
+    overflow: hidden;
+    padding: 0;
+    display: flex;
+}
+
+.video-card iframe {
+    width: 100% !important;
+    height: 100% !important;
+    border: none;
+
+    transform-origin: center;
+}
+
+/* New Posts (2 Kolom Horizontal) */
+.news-post-grid { display: grid !important; grid-template-columns: repeat(2, 1fr); gap: 20px; }
+.post-card-horiz { display: flex; background: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; }
+.post-thumb { width: 40%; background: #ccc; min-height: 150px; }
+
+/* Featured Posts (3 Kolom Vertikal) */
+.news-featured-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.post-card-vert { background: #fff; border: 1px solid #eee; border-radius: 12px; overflow: hidden; }
+.featured-thumb { width: 100%; height: 180px; background: #ccc; }
+
+/* Common Post Styling */
+.post-content { padding: 15px; flex: 1; }
+.post-content h3 { font-size: 1rem; margin: 0 0 10px; }
+.post-content p { font-size: 0.85rem; color: #666; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; }
+.post-meta { display: flex; align-items: center; gap: 10px; margin-top: 15px; font-size: 0.75rem; color: #888; }
+.avatar { width: 32px; height: 32px; border-radius: 50%; }
+
+
+/* Container Meta agar Share ke Kanan Mentok */
+.post-meta {
+    display: flex;
+    justify-content: space-between; /* Ini yang bikin share ke kanan */
+    align-items: center;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.meta-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Biar featured-thumb yang tadinya <a> tetep rapi */
+.featured-thumb {
+    display: block;
+    width: 100%;
+    height: 200px; /* Atur tinggi gambar di sini */
+    overflow: hidden;
+    border-radius: 12px 12px 0 0;
+}
+
+.news-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* Tombol Share Biru lo */
+.n-share-btn {
+    width: 28px;
+    height: 28px;
+    background: #008DF2;
+    border: none;
+    border-radius: 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.n-share {
+    width: 16px;
+    height: 16px;
+    filter: brightness(0) invert(1); /* Biar icon putih */
+}
+
+/* Mobile View */
+@media (max-width: 768px) {
+    .news-video-grid, .news-featured-grid { grid-template-columns: repeat(1, 1fr); }
+    .news-post-grid { grid-template-columns: 1fr; }
+}
+
+    .news-nav {
+        display: none;
+    }
