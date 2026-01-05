@@ -248,24 +248,26 @@ document.addEventListener('click', () => {
     }
 });
 
-function shareVilla(name, villaId) {
-    // Ini buat bikin link tujuan: contoh: samvilla.id/villas.html#omah-tani
-    const shareUrl = window.location.origin + window.location.pathname + '#' + villaId;
+function shareVilla(villaId) {
+    // FORCE pake domain asli biar gak muncul null atau path X:/
+    const productionUrl = "https://www.samvillabatu.com/villas";
+    const shareLink = `${productionUrl}#${villaId}`;
 
-    // Cek apakah browser support fitur Share bawaan (biasanya di HP)
     if (navigator.share) {
         navigator.share({
-            title: name,
-            text: 'Cek villa keren ini di SAM Villa: ' + name,
-            url: shareUrl,
-        })
-        .then(() => console.log('Berhasil share'))
-        .catch((error) => console.log('Gagal share', error));
+            title: 'SAMvilla Batu',
+            text: 'Cek villa ini, fasilitasnya lengkap banget!',
+            url: shareLink
+        }).catch(() => {});
     } else {
-        // Fallback: Kalau buka di PC, otomatis Copy Link ke Clipboard
-        navigator.clipboard.writeText(shareUrl).then(() => {
-            alert('Link ' + name + ' berhasil disalin ke clipboard!');
-        });
+        // Fallback buat browser yang gak dukung navigator.share
+        const tempInput = document.createElement("input");
+        document.body.appendChild(tempInput);
+        tempInput.value = shareLink;
+        tempInput.select();
+        document.execCommand("copy");
+        document.body.removeChild(tempInput);
+        alert('Link villa berhasil disalin!');
     }
 }
 
