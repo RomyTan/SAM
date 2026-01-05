@@ -285,3 +285,4 @@ function toggleDetails(btn) {
         extraDetails.style.display = "none";
     }
 }
+
