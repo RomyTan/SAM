@@ -285,10 +285,3 @@ function toggleDetails(btn) {
         extraDetails.style.display = "none";
     }
 }
-
-// Fungsi Expand/Collapse
-function toggleDetails(btn) {
-    btn.classList.toggle('active');
-    const card = btn.closest('.post-card-vert');
-    card.classList.toggle('active');
-}
